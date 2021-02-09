@@ -56,12 +56,8 @@ public class MainFragment extends Fragment {
         sharedPreferences.getString("Especie", "Especie");
 
 
-
-
-
-
         ArrayList<AnimalCrossing> items = new ArrayList<>();
-        adapter = new ArrayAdapter<>(
+        adapter = new AnimalCrossingAdapter(
                 getContext(),
                 R.layout.lv_animalcrossing_row,
                 items
@@ -80,7 +76,7 @@ public class MainFragment extends Fragment {
                 AnimalCrossing animalCrossing = (AnimalCrossing) adapterView.getItemAtPosition(i);
                 if (!isTablet()) {
                     Intent intent = new Intent(getContext(), DetailActivity.class);
-                    intent.putExtra("AnimalCrossing", animalCrossing);
+                    intent.putExtra("acnh", animalCrossing);
                     startActivity(intent);
            }else {
                     sharedViewModel.select(animalCrossing);
@@ -90,10 +86,10 @@ public class MainFragment extends Fragment {
 
         animalCrossingViewModel = ViewModelProviders.of(this).get(AnimalCrossingViewModel.class);
 
-        animalCrossingViewModel.getVillagers().observe(getViewLifecycleOwner(), animalCrossing ->{
+        animalCrossingViewModel.getAnimalCrossing().observe(getViewLifecycleOwner(), animalCrossing ->{
             adapter.clear();
             adapter.addAll();
-        })
+        });
 
         return view;
 
