@@ -22,6 +22,10 @@ public class AnimalCrossing implements Serializable {
         this.icono = icono;
     }
 
+    public AnimalCrossing() {
+
+    }
+
     public int getId() {
         return id;
     }
