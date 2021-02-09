@@ -1,10 +1,34 @@
 package com.example.animalcrossing.ui.main;
 
-public class AnimalCrossing {
-    String nombre;
-    String personalidad;
-    String especie;
-    String icono;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+
+@Entity
+public class AnimalCrossing implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private String nombre;
+    private String personalidad;
+    private String especie;
+    private String icono;
+
+    public AnimalCrossing(int id, String nombre, String personalidad, String especie, String icono) {
+        this.id = id;
+        this.nombre = nombre;
+        this.personalidad = personalidad;
+        this.especie = especie;
+        this.icono = icono;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -41,7 +65,8 @@ public class AnimalCrossing {
     @Override
     public String toString() {
         return "AnimalCrossing{" +
-                "nombre='" + nombre + '\'' +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
                 ", personalidad='" + personalidad + '\'' +
                 ", especie='" + especie + '\'' +
                 ", icono='" + icono + '\'' +

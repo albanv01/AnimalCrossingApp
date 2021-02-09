@@ -9,9 +9,9 @@ import androidx.room.Query;
 import java.security.acl.AclNotFoundException;
 import java.util.List;
 
-
+@Dao
 public interface AnimalCrossingDAO {
-    @Query("select * from villagers")
+    @Query("select * from animalcrossing")
     LiveData<List<AnimalCrossing>> getVillagers();
     @Insert
     void addVillagers(AnimalCrossing add);
@@ -22,6 +22,6 @@ public interface AnimalCrossingDAO {
     @Delete
     void deleteVillagers(AnimalCrossing villager);
 
-    @Query("DELETE FROM villagers")
+    @Query("DELETE FROM animalcrossing")
     void deleteVillagers();
 }

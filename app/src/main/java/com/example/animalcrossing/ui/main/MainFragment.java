@@ -70,7 +70,7 @@ public class MainFragment extends Fragment {
         lvAnimalCrossing = view.findViewById(R.id.lvACNH);
         lvAnimalCrossing.setAdapter(adapter);
 
-        lvAnimalCrossing.setOnClickListener(new AdapterView.OnItemClickListener(){
+        lvAnimalCrossing.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view1, int i, long l){
                 AnimalCrossing animalCrossing = (AnimalCrossing) adapterView.getItemAtPosition(i);
