@@ -1,5 +1,6 @@
 package com.example.animalcrossing.ui.main;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -51,6 +52,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 
         //View view = inflater.inflate(R.layout.main_fragment, container, false);
 

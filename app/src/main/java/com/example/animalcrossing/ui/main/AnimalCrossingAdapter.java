@@ -1,6 +1,7 @@
 package com.example.animalcrossing.ui.main;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class AnimalCrossingAdapter extends ArrayAdapter<AnimalCrossing> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.lv_animalcrossing_row, parent, false);
         }
+
 
         TextView tvAnimalCrossing = convertView.findViewById(R.id.tvAnimalCrossing);
         TextView tvEspecie = convertView.findViewById(R.id.tvEspecie);

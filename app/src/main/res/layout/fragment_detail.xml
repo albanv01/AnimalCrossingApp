@@ -6,7 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.animalcrossing.ui.main.DetailActivity">
+        tools:context="com.example.animalcrossing.ui.main.DetailActivity"
+        android:background="@drawable/fbiq5smypzj41">
 
 
         <ImageView
@@ -30,6 +31,8 @@
             android:text="@string/texto_vacio"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="@font/animalcrossing"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.478"
             app:layout_constraintLeft_toRightOf="@+id/ivVillagerImage"
@@ -43,6 +46,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/texto_vacio"
             android:textSize="14sp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.467"
             app:layout_constraintStart_toEndOf="@+id/ivVillagerImage2"

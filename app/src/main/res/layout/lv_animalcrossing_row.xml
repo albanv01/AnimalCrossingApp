@@ -3,7 +3,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:background="@color/green_animalcrossing"
+        android:divider="@null"
+        android:dividerHeight="0dp">
+
     <ImageView
         android:id="@+id/ivVillagerImage"
         android:layout_width="50dp"
@@ -30,8 +34,9 @@
             android:layout_marginStart="69dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="112dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="5dp"
             android:layout_toEndOf="@+id/ivVillagerImage"
+            android:fontFamily="@font/animalcrossing"
             android:textStyle="bold" />
 
         <TextView
@@ -45,7 +50,8 @@
             android:layout_marginEnd="109dp"
             android:layout_toEndOf="@+id/ivVillagerImage"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="12sp" />
+            android:textSize="10sp"
+            android:fontFamily="sans-serif"/>
 
     </RelativeLayout>
 </layout>
