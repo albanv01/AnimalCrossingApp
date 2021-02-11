@@ -43,7 +43,7 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.main_fragment, container, false);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         sharedPreferences.getString("Especie", "Especie");
 
 
@@ -54,10 +54,6 @@ public class MainFragment extends Fragment {
                 items
         );
 
-        sharedViewModel = ViewModelProviders.of(getActivity()).get(
-                SharedViewModel.class
-        );
-
         lvAnimalCrossing = view.findViewById(R.id.lvACNH);
         lvAnimalCrossing.setAdapter(adapter);
 
@@ -65,13 +61,10 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view1, int i, long l){
                 AnimalCrossing animalCrossing = (AnimalCrossing) adapterView.getItemAtPosition(i);
-                if (!isTablet()) {
+
                     Intent intent = new Intent(getContext(), DetailActivity.class);
                     intent.putExtra("acnh", animalCrossing);
                     startActivity(intent);
-           }else {
-                    sharedViewModel.select(animalCrossing);
-                }
             }
         });
 
@@ -79,7 +72,7 @@ public class MainFragment extends Fragment {
 
         animalCrossingViewModel.getAnimalCrossing().observe(getViewLifecycleOwner(), animalCrossing ->{
             adapter.clear();
-            adapter.addAll();
+            adapter.addAll(animalCrossing);
         });
 
         return view;
@@ -145,9 +138,7 @@ public class MainFragment extends Fragment {
         refresh();
     }
 
-    boolean isTablet() {
-        return getResources().getBoolean(R.bool.tablet);
-    }
+
 
 
 }

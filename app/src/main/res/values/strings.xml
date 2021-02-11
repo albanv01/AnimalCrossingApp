@@ -4,4 +4,6 @@
     <string name="archangel_avacyn" />
     <string name="rarity_common" />
     <string name="settings" />
+    <string name="texto_vacio">texto vacio</string>
+    <string name="Detail_Villager">Detail Villager</string>
 </resources>

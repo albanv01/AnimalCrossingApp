@@ -28,7 +28,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/archangel_avacyn"
+        android:text="@string/texto_vacio"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@+id/ivVillagerImage"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/rarity_common"
+        android:text="@string/texto_vacio"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="@+id/tvAnimalCrossing"
         app:layout_constraintTop_toBottomOf="@+id/tvAnimalCrossing" />

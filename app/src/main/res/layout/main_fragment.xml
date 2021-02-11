@@ -9,7 +9,7 @@
 
 
 
-    <GridView
+    <ListView
         android:id="@+id/lvACNH"
         android:layout_width="0dp"
         android:layout_height="0dp"

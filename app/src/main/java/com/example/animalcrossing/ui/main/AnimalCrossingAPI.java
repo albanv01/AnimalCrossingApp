@@ -39,42 +39,41 @@ public class AnimalCrossingAPI {
         String especie = MainFragment.especie;
 
         try{
-            JSONObject data = new JSONObject(jsonResponse);
-            JSONArray jsonVillagers = data.getJSONArray("villagers");
 
-            for (int i = 0; i < jsonVillagers.length(); i++) {
-                JSONObject jsonVillager = jsonVillagers.getJSONObject(i);
+            JSONObject data = new JSONObject(jsonResponse);
+            JSONArray especie2 = data.names();
+            for (int i = 0; i < data.length(); i++) {
+
+                JSONObject jsonVillager = data.getJSONObject(especie2.getString(i));
+                JSONObject jsonNombre = jsonVillager.getJSONObject("name");
                 AnimalCrossing animalCrossing = new AnimalCrossing();
                 String especieString = jsonVillager.getString("species");
 
-                switch (especie){
-                    case "0":
-                        addAnimalCrossing(animalCrossing, jsonVillager, villagers, especieString);
-                        break;
-                    case "1":
-                        if (especieString.equals("ant")){
-                            addAnimalCrossing(animalCrossing,jsonVillager,villagers,especieString);
-                        }
+
+                        addAnimalCrossing(animalCrossing, jsonVillager, jsonNombre, villagers, especieString);
+
+
                 }
 
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+            } catch (JSONException jsonException) {
+            jsonException.printStackTrace();
         }
-        imprimirArrayList(villagers);
+
+
         return villagers;
     }
 
-    private void addAnimalCrossing(AnimalCrossing animalCrossing, JSONObject jsonVillager, ArrayList<AnimalCrossing> animalCrossings, String especie) throws JSONException{
+    private void addAnimalCrossing(AnimalCrossing animalCrossing, JSONObject jsonVillager, JSONObject jsonNombre , ArrayList<AnimalCrossing> animalCrossings, String especie) throws JSONException{
         animalCrossing.setEspecie(especie);
-        animalCrossing.setNombre(jsonVillager.getString("name"));
+        animalCrossing.setNombre(jsonNombre.getString("name-USen"));
         animalCrossing.setPersonalidad(jsonVillager.getString("personality"));
-        if (jsonVillager.has("icon_url")){
-            animalCrossing.setIcono(jsonVillager.getString("icon_url"));
+        if (jsonVillager.has("icon_uri")){
+            animalCrossing.setIcono(jsonVillager.getString("icon_uri"));
         }else{
             animalCrossing.setIcono("");
         }
         animalCrossings.add(animalCrossing);
+        imprimirArrayList(animalCrossings);
     }
     private void imprimirArrayList(ArrayList<AnimalCrossing> animalCrossings){
     }

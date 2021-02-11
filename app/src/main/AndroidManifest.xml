@@ -12,10 +12,14 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AnimalCrossing">
+        <activity android:name=".ui.main.DetailActivity"
+            android:label="@string/Detail_Villager"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
             android:theme="@style/AppTheme.NoActionBar">
+
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
