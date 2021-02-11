@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
 import com.example.animalcrossing.R;
+import com.example.animalcrossing.databinding.FragmentDetailBinding;
 
 
 public class DetailActivityFragment extends Fragment {
@@ -26,6 +27,7 @@ public class DetailActivityFragment extends Fragment {
     private TextView tvAnimalCrossing;
     private TextView tvEspecie;
     private TextView tvPersonalidad;
+    private FragmentDetailBinding binding;
 
     public static DetailActivityFragment newInstance(){
         return new DetailActivityFragment();
@@ -33,8 +35,10 @@ public class DetailActivityFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        view = inflater.inflate(R.layout.fragment_detail, container, false);
+        //view = inflater.inflate(R.layout.fragment_detail, container, false);
 
+        binding = FragmentDetailBinding.inflate(inflater); // <1>
+        view = binding.getRoot();
         Intent i = getActivity().getIntent();
         if (i!=null){
             AnimalCrossing animalCrossing = (AnimalCrossing) i.getSerializableExtra("animalCrossing");
@@ -56,17 +60,13 @@ public class DetailActivityFragment extends Fragment {
 
     private void updateUI(AnimalCrossing animalCrossing){
         Log.d("VILLAGER", animalCrossing.toString());
+        System.out.println( "OBJETO: " +animalCrossing);
 
-        ivVillagerImage=view.findViewById(R.id.ivVillagerImage);
-        tvAnimalCrossing=view.findViewById(R.id.tvAnimalCrossing);
-        tvEspecie=view.findViewById(R.id.tvEspecie);
-
-
-        tvAnimalCrossing.setText(animalCrossing.getNombre());
-        tvEspecie.setText(animalCrossing.getEspecie());
+        binding.tvAnimalCrossing2.setText(animalCrossing.getNombre());
+        binding.tvEspecie2.setText(animalCrossing.getEspecie());
 
         Glide.with(getContext()).load(
                 animalCrossing.getIcono()
-        ).into(ivVillagerImage);
+        ).into(binding.ivVillagerImage2);
     }
 }

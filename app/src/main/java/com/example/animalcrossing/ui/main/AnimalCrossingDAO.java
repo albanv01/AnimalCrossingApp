@@ -13,6 +13,11 @@ import java.util.List;
 public interface AnimalCrossingDAO {
     @Query("select * from animalcrossing")
     LiveData<List<AnimalCrossing>> getVillagers();
+
+
+    @Query("select * from animalcrossing where especie = :especie")
+    LiveData<List<AnimalCrossing>> getEspecie(String especie);
+
     @Insert
     void addVillagers(AnimalCrossing add);
 

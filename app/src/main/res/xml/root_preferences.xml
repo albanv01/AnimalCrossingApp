@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General Settings" >
+        <EditTextPreference
+            android:key="animalCrossing"
+            android:title="Animal Crossing"
+            android:dialogTitle="Animal Crossing"
+            android:summary="Escribe la especie que quieres buscar"
+            />
+    </PreferenceCategory>
+</PreferenceScreen>

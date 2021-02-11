@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class AnimalCrossingAPI {
+
+    private ArrayList<AnimalCrossing> villagers=new ArrayList<>();
+    private AnimalCrossing animalCrossing;
+
     private final String BASE_URL = "http://acnhapi.com/v1";
     private final String API_KEY = "<api-key>";
 
@@ -31,11 +35,11 @@ public class AnimalCrossingAPI {
         } catch (IOException e){
             e.printStackTrace();
         }
-        return null;
+        return villagers;
     }
 
     private ArrayList<AnimalCrossing> processJson(String jsonResponse) {
-        ArrayList<AnimalCrossing> villagers = new ArrayList<>();
+        villagers = new ArrayList<>();
         String especie = MainFragment.especie;
 
         try{
@@ -46,7 +50,7 @@ public class AnimalCrossingAPI {
 
                 JSONObject jsonVillager = data.getJSONObject(especie2.getString(i));
                 JSONObject jsonNombre = jsonVillager.getJSONObject("name");
-                AnimalCrossing animalCrossing = new AnimalCrossing();
+                animalCrossing = new AnimalCrossing();
                 String especieString = jsonVillager.getString("species");
 
 

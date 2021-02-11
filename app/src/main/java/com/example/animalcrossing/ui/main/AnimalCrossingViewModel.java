@@ -13,7 +13,7 @@ public class AnimalCrossingViewModel extends AndroidViewModel {
     private final Application app;
     private final AppDB appDB;
     private final AnimalCrossingDAO animalCrossingDAO;
-    private LiveData<List<AnimalCrossing>> animalCrossing;
+    private ArrayList<AnimalCrossing> result = new ArrayList<>();
 
     public AnimalCrossingViewModel(Application application){
         super(application);
@@ -32,13 +32,17 @@ public class AnimalCrossingViewModel extends AndroidViewModel {
         return animalCrossingDAO.getVillagers();
     }
 
+    public LiveData<List<AnimalCrossing>> getEspeciesVM(){
+        return animalCrossingDAO.getEspecie(MainFragment.getEspecieSettings());
+    }
+
     private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids){
             AnimalCrossingAPI api = new AnimalCrossingAPI();
-            ArrayList<AnimalCrossing> result;
-
-            result=api.getVillagers();
+            if(result.size()==0) {
+                result = api.getVillagers();
+            }
             animalCrossingDAO.deleteVillagers();
             animalCrossingDAO.addVillagers(result);
             return null;

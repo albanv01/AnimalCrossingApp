@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.animalcrossing.R;
+import com.example.animalcrossing.SettingsActivity;
+import com.example.animalcrossing.databinding.FragmentDetailBinding;
+import com.example.animalcrossing.databinding.MainFragmentBinding;
 
 import java.util.ArrayList;
 
@@ -32,9 +36,15 @@ public class MainFragment extends Fragment {
     public static String especie;
     private MainViewModel mViewModel;
     private Bundle savedInstanceState;
+    private MainFragmentBinding binding;
+    public static String especiesettings;
 
     public static MainFragment newInstance() {
         return new MainFragment();
+    }
+
+    public static String getEspecieSettings() {
+        return especiesettings;
     }
 
     @Nullable
@@ -42,9 +52,17 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.main_fragment, container, false);
+        //View view = inflater.inflate(R.layout.main_fragment, container, false);
+
+        binding = MainFragmentBinding.inflate(inflater); // <1>
+        View view = binding.getRoot();
+
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        sharedPreferences.getString("Especie", "Especie");
+
+        especiesettings = sharedPreferences.getString("animalCrossing", "");
+
+        Toast.makeText(getContext(), especiesettings, Toast.LENGTH_LONG).show();
 
 
         ArrayList<AnimalCrossing> items = new ArrayList<>();
@@ -56,24 +74,28 @@ public class MainFragment extends Fragment {
 
         lvAnimalCrossing = view.findViewById(R.id.lvACNH);
         lvAnimalCrossing.setAdapter(adapter);
-
-        lvAnimalCrossing.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view1, int i, long l){
-                AnimalCrossing animalCrossing = (AnimalCrossing) adapterView.getItemAtPosition(i);
-
-                    Intent intent = new Intent(getContext(), DetailActivity.class);
-                    intent.putExtra("acnh", animalCrossing);
-                    startActivity(intent);
-            }
+        lvAnimalCrossing.setOnItemClickListener((adapterView, view1, i, l) -> {
+            AnimalCrossing animalCrossing = (AnimalCrossing) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getContext(), DetailActivity.class);
+                intent.putExtra("animalCrossing", animalCrossing);
+                startActivity(intent);
         });
 
         animalCrossingViewModel = ViewModelProviders.of(this).get(AnimalCrossingViewModel.class);
 
-        animalCrossingViewModel.getAnimalCrossing().observe(getViewLifecycleOwner(), animalCrossing ->{
+        if(especiesettings.isEmpty()) {
+                animalCrossingViewModel.getAnimalCrossing().observe(getViewLifecycleOwner(), animalCrossing -> {
+                adapter.clear();
+                    System.out.println("TODOS FROM DAO "+animalCrossing);
+                adapter.addAll(animalCrossing);
+            });
+        }else{
+            animalCrossingViewModel.getEspeciesVM().observe(getViewLifecycleOwner(), animalCrossing ->{
             adapter.clear();
-            adapter.addAll(animalCrossing);
+                System.out.println("ESPECIE  FROM DAO + SETTINGS "+animalCrossing);
+                adapter.addAll(animalCrossing);
         });
+        }
 
         return view;
 
@@ -109,6 +131,11 @@ public class MainFragment extends Fragment {
         if (id == R.id.action_refresh){
             refresh();
             return true;
+        }
+
+        if (id == R.id.action_settings){
+            Intent i = new Intent(getContext(), SettingsActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

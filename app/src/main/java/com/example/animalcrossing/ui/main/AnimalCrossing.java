@@ -1,5 +1,6 @@
 package com.example.animalcrossing.ui.main;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -11,6 +12,7 @@ public class AnimalCrossing implements Serializable {
     private int id;
     private String nombre;
     private String personalidad;
+    @ColumnInfo(name = "especie")
     private String especie;
     private String icono;
 
